@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, '/../dist')));
 
 app.listen(8080);
 
-const url = 'http://localhost:8080';
+const url = 'http://localhost:1234';
 
 describe('Very Simple To Do App', function main() {
   this.timeout(12000);

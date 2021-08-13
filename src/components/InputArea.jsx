@@ -4,53 +4,27 @@ import TextArea from './TextArea';
 import PriorityArea from './PriorityArea';
 import Button from './Button';
 
-class InputArea extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-			todoText: '',
-			todoPriorityLevel: 0
-		};
-		this.handleChange = this.handleChange.bind(this);
-		this.handleClick = this.handleClick.bind(this);
-    }
-
-	handleChange(e) {
-		const { name, value } = e.target;
-
-		this.setState({
-			[name]: value,
-		});
-		console.log(this.state);
-	}
-
-	handleClick() {
-
-	}
-
-
-    render() {
-        return (
-            <div className='p-4 sub-container create-todo'>
-                <SubHeader text='Add New Todo' />
-                <TextArea
-					name='todoText'
-					onChange={ this.handleChange }
-					label='I want to...'
-					className='create-todo-text'
-                />
-                <PriorityArea
-					name='todoPriorityLevel'
-					onChange={ this.handleChange }
-                />
-                <Button
-					className='mx-auto'
-					text='Add to List'
-					onClick={ this.handleClick }
-                />
-            </div>
-        );
-    }
+function InputArea(props) {
+	return (
+		<div className='p-4 sub-container create-todo'>
+			<SubHeader text='Add New Todo' />
+			<TextArea
+				name='todoText'
+				onChange={ props.handleChange }
+				label='I want to...'
+				className='create-todo-text'
+			/>
+			<PriorityArea
+				name='todoPriorityLevel'
+				onChange={ props.handleChange }
+			/>
+			<Button
+				className='mx-auto'
+				text='Add to List'
+				onClick={ props.handleClick }
+			/>
+		</div>
+	);
 }
 
 export default InputArea;
