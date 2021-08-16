@@ -7,24 +7,37 @@ class App extends Component {
 	constructor(props) {
         super(props);
         this.state = {
-			todoText: '',
-			todoPriorityLevel: 0
+			todoItems: [],
+			initTodoText: '',
+			initTodoPriorityLevel: 0
 		};
-		this.handleChange = this.handleChange.bind(this);
-		this.handleClick = this.handleClick.bind(this);
+		this.handleAddTodo = this.handleAddTodo.bind(this);
+		this.handleCallback = this.handleCallback.bind(this);
     }
 
-	handleChange(e) {
-		const { name, value } = e.target;
+	handleAddTodo() {
+		const newToDo = {
+			todoText: this.state.todoText,
+			todoPriorityLevel: this.state.todoPriorityLevel,
+			todoId: this.state.todoItems.length + 1
+		};
 
-		this.setState({
-			[name]: value,
+		// const newToDoItems = [[...this.state.todoItems].push(newToDo)];
+
+		this.setState(prevState => {
+			return {
+				todoItems: [...prevState.todoItems, newToDo]
+			};
 		});
-		console.log(this.state);
+		console.log(this.state.todoItems);
 	}
 
-	handleClick() {
-		console.log('clicked!')
+	handleCallback(inputAreaData) {
+		// console.log('callback function called', inputAreaData);
+		this.setState({
+			todoText: inputAreaData.todoText,
+			todoPriorityLevel: inputAreaData.todoPriorityLevel
+		});
 	}
 
   render() {
@@ -33,10 +46,10 @@ class App extends Component {
         <Header />
         <div className='row mt-5 justify-content-around'>
           <div className='col-5'>
-            <InputArea
-				handleChange={ this.handleChange } 
-				handleClick={ this.handleClick }
-            />
+           <InputArea
+		   		parentCallback={ this.handleCallback }
+				handleAddTodo={ this.handleAddTodo }
+           />
           </div>
           <div className='col-7'>
             <ToDoList />
