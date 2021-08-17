@@ -22,14 +22,13 @@ class App extends Component {
 			todoId: this.state.todoItems.length + 1
 		};
 
-		// const newToDoItems = [[...this.state.todoItems].push(newToDo)];
-
-		this.setState(prevState => {
+		this.setState((prevState) => {
+			const newToDos = prevState.todoItems;
+			newToDos.push(newToDo);
 			return {
-				todoItems: [...prevState.todoItems, newToDo]
+				todoItems: newToDos
 			};
-		});
-		console.log(this.state.todoItems);
+		}, () => console.log(this.state.todoItems));
 	}
 
 	handleCallback(inputAreaData) {

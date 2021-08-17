@@ -24,10 +24,10 @@ class InputArea extends Component {
 		// console.log(this.state);
 	}
 
-	handleClick(event) {
+	handleClick() {
+		// alert('this value was submitted: ' + this.state.todoText + ' and a priority level of ' + this.state.todoPriorityLevel);
 		this.props.parentCallback(this.state);
 		this.props.handleAddTodo(this.state);
-		event.preventDefault();
 	}
 
 	render() {
