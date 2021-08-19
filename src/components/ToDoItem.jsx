@@ -16,22 +16,12 @@ class ToDoItem extends Component {
 		this.handleUpdateCallback = this.handleUpdateCallback.bind(this);
     }
 
-	// updateTodo(editedTodoData){
-	// 	const updatedTodo = {
-	// 		title: editedTodoData.text,
-	// 		priority: editedTodoData.priority,
-	// 		key: this.props.key,
-	// 		displayEdit: this.props.displayEdit
-	// 	}
-	// 	this.setState((prevState) => {
-	// 		return {
-
-	// 		};
-	// 	});
-	// }
-
-	handleUpdateCallback() {
-		console.log('callback function called');
+	handleUpdateCallback(editedTodoData) {
+		console.log('callback function called', editedTodoData);
+		this.setState({
+			title: editedTodoData.todoText,
+			priority: editedTodoData.todoPriorityLevel
+		});
 	}
 
 	toggleEditTodo() {

@@ -6,19 +6,42 @@ import Button from './Button';
 class EditToDo extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			todoText: this.props.title,
+			todoPriorityLevel: this.props.priority
+		};
 		this.combineEditandToggleFunc = this.combineEditandToggleFunc.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 
 	combineEditandToggleFunc() {
-		this.props.handleUpdateCallback();
+		this.props.handleUpdateCallback(this.state);
 		this.props.toggleEditTodo();
+	}
+
+	handleChange(e) {
+		const { name, value } = e.target;
+
+		this.setState({
+			[name]: value
+		});
+		// console.log(this.state);
 	}
 
 	render() {
 		return (
 			<div className={ this.props.className }>
-				<TextArea className='update-todo-text' label='Description' />
-				<PriorityArea className='update-todo-priority' />
+				<TextArea
+					name='todoText'
+					className='update-todo-text' 
+					label='Description'
+					onChange={ this.handleChange }
+				/>
+				<PriorityArea
+					name='todoPriorityLevel'
+					className='update-todo-priority'
+					onChange={ this.handleChange }
+				/>
 				<Button
 					onClick={ this.combineEditandToggleFunc }
 					text='Save'
