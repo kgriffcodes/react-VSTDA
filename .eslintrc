@@ -6,6 +6,7 @@
     "react/jsx-curly-spacing": [2, "always"],
     "react/prefer-stateless-function": [0],
 	"react/jsx-indent-props": 0,
+	"react/prop-types": "off",
     "comma-dangle": "off",
     "indent": 0,
 	"no-tabs": 0,

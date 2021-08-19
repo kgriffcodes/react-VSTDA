@@ -15,11 +15,12 @@ class App extends Component {
 		this.handleCallback = this.handleCallback.bind(this);
     }
 
-	handleAddTodo() {
+	handleAddTodo(inputAreaData) {
 		const newToDo = {
-			todoText: this.state.todoText,
-			todoPriorityLevel: this.state.todoPriorityLevel,
-			todoId: this.state.todoItems.length + 1
+			todoText: inputAreaData.todoText,
+			todoPriorityLevel: inputAreaData.todoPriorityLevel,
+			todoId: this.state.todoItems.length + 1,
+			todoDisplayEdit: false
 		};
 
 		this.setState((prevState) => {
@@ -51,7 +52,9 @@ class App extends Component {
            />
           </div>
           <div className='col-7'>
-            <ToDoList />
+            <ToDoList
+				todoItems={ this.state.todoItems }
+            />
           </div>
         </div>
       </div>
