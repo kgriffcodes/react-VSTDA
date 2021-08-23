@@ -13,13 +13,14 @@ class App extends Component {
 		};
 		this.handleAddTodo = this.handleAddTodo.bind(this);
 		this.handleCallback = this.handleCallback.bind(this);
+		this.handleUpdateTodoArr = this.handleUpdateTodoArr.bind(this);
     }
 
 	handleAddTodo(inputAreaData) {
 		const newToDo = {
 			todoText: inputAreaData.todoText,
 			todoPriorityLevel: inputAreaData.todoPriorityLevel,
-			todoId: this.state.todoItems.length + 1,
+			todoId: inputAreaData.todoText,
 			todoDisplayEdit: false
 		};
 
@@ -29,7 +30,18 @@ class App extends Component {
 			return {
 				todoItems: newToDos
 			};
-		}, () => console.log(this.state.todoItems));
+		}
+		// , () => console.log(this.state.todoItems)
+		);
+	}
+
+	handleUpdateTodoArr(todoListData) {
+		console.log('callback 1 func called', todoListData);
+		// const selectedTodoId = todoData['listId'];
+		//replace the old array value with the updated todoItem values
+		// const updatedArr = todoItemsCopy.map(obj => todoItemsCopy.find(o => o.todoId === selectedTodoId) || obj);
+		// this.setState((prevState) => {
+		// });
 	}
 
 	handleCallback(inputAreaData) {
@@ -53,6 +65,7 @@ class App extends Component {
           </div>
           <div className='col-7'>
             <ToDoList
+				parentCallback={ this.handleUpdateTodoArr }
 				todoItems={ this.state.todoItems }
             />
           </div>

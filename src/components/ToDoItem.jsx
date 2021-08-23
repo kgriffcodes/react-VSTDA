@@ -10,29 +10,36 @@ class ToDoItem extends Component {
         this.state = {
 			title: this.props.title,
 			priority: this.props.priority,
-			displayEdit: this.props.displayEdit
+			displayEdit: this.props.displayEdit,
+			listId: this.props.listId
 		};
+		this.passAlongDataToList = this.passAlongDataToList.bind(this);
 		this.toggleEditTodo = this.toggleEditTodo.bind(this);
 		this.handleUpdateCallback = this.handleUpdateCallback.bind(this);
     }
 
+	passAlongDataToList(editedStateVals) {
+		this.toggleEditTodo();
+		this.props.handleTodoData(editedStateVals);
+	}
+
 	handleUpdateCallback(editedTodoData) {
-		console.log('callback function called', editedTodoData);
+		// console.log('callback 3 function called', editedTodoData);
 		this.setState({
 			title: editedTodoData.todoText,
 			priority: editedTodoData.todoPriorityLevel
-		});
+		}, this.passAlongDataToList(editedTodoData));
 	}
 
 	toggleEditTodo() {
-		console.log('toggle');
+		// console.log('toggle');
 		this.setState((prevState) => {
 			let newDisplay = prevState.displayEdit;
 			newDisplay = !newDisplay;
 			return {
 				displayEdit: newDisplay
 			};
-		 }, () => console.log(this.state));
+		 });
 	}
 
 	render() {
@@ -49,7 +56,7 @@ class ToDoItem extends Component {
 					<EditToDo
 						handleUpdateCallback={ this.handleUpdateCallback }
 						className={ ` ${this.state.displayEdit ? '' : 'displayNone'}` }
-						toggleEditTodo={ this.toggleEditTodo }
+						passAlongDataToList={ this.passAlongDataToList }
 					/>
 				</span>
 			</div>

@@ -16,7 +16,6 @@ class EditToDo extends React.Component {
 
 	combineEditandToggleFunc() {
 		this.props.handleUpdateCallback(this.state);
-		this.props.toggleEditTodo();
 	}
 
 	handleChange(e) {
