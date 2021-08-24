@@ -10,17 +10,24 @@ class ToDoList extends React.Component {
 		this.state = {
 			title: '',
 			priority: 0,
+			listId: '',
 			todoItems: this.props.todoItems
 		};
 		this.handleTodoData = this.handleTodoData.bind(this);
+		this.removeCallback = this.removeCallback.bind(this);
 	}
 
 	handleTodoData(todoData) {
 		// console.log('callback 2 func called', todoData);
 		this.setState({
 			title: todoData.todoText,
-			priority: todoData.todoPriorityLevel
+			priority: todoData.todoPriorityLevel,
+			listId: todoData.listId
 		}, this.props.parentCallback(todoData));
+	}
+
+	removeCallback(todoData){
+		this.props.removeCallback(todoData);
 	}
 
 	render() {
@@ -31,6 +38,7 @@ class ToDoList extends React.Component {
 				{todoItems.map(todo => {
 					return (
 						<ToDoItem
+							removeCallback={ this.removeCallback }
 							handleTodoData={ this.handleTodoData }
 							title={ todo.todoText }
 							priority={ todo.todoPriorityLevel }

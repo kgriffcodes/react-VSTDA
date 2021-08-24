@@ -8,7 +8,8 @@ class EditToDo extends React.Component {
 		super(props);
 		this.state = {
 			todoText: this.props.title,
-			todoPriorityLevel: this.props.priority
+			todoPriorityLevel: this.props.priority,
+			listId: this.props.listId
 		};
 		this.combineEditandToggleFunc = this.combineEditandToggleFunc.bind(this);
 		this.handleChange = this.handleChange.bind(this);

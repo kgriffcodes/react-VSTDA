@@ -16,6 +16,8 @@ class ToDoItem extends Component {
 		this.passAlongDataToList = this.passAlongDataToList.bind(this);
 		this.toggleEditTodo = this.toggleEditTodo.bind(this);
 		this.handleUpdateCallback = this.handleUpdateCallback.bind(this);
+		this.handleDeleteClick = this.handleDeleteClick.bind(this);
+		this.pickBgColor = this.pickBgColor.bind(this);
     }
 
 	passAlongDataToList(editedStateVals) {
@@ -42,18 +44,35 @@ class ToDoItem extends Component {
 		 });
 	}
 
+	handleDeleteClick() {
+		this.props.removeCallback(this.state);
+	}
+
+	pickBgColor() {
+		let bgColor = 'pinkBg';
+		if (this.state.priority === 1) {
+			bgColor = 'greenBg';
+		} else if (this.state.priority === 2) {
+			bgColor = 'yellowBg';
+		} else if (this.state.priority === 3) {
+			bgColor = 'redBg';
+		}
+		return bgColor;
+	}
+
 	render() {
 		return (
-			<div className='pt-2 pb-2 to-do-item justify-content-between'>
+			<div className={ 'pt-2 pb-2 to-do-item justify-content-between ' + this.pickBgColor() }>
 				<h6>{ this.state.title }</h6>
 				<span>
 					<a onClick={ this.toggleEditTodo } className='edit-todo'>
 						<i className='fas fa-edit' />
 					</a>
-					<a className='delete-todo'>
+					<a onClick={ this.handleDeleteClick } className='delete-todo'>
 						<i className='fas fa-trash-alt' />
 					</a>
 					<EditToDo
+						listId={ this.state.listId }
 						handleUpdateCallback={ this.handleUpdateCallback }
 						className={ ` ${this.state.displayEdit ? '' : 'displayNone'}` }
 						passAlongDataToList={ this.passAlongDataToList }

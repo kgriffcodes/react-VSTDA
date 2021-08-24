@@ -44,6 +44,7 @@ div.pull-right a {
 .sub-container {
   border: 2px solid black;
   border-radius: 5px;
+  background-color: rgb(213, 213, 213);
 }
 
 .to-do-item {
@@ -55,4 +56,20 @@ div.pull-right a {
 
 .displayNone {
 	display: none;
+}
+
+.greenBg {
+	background-color: green;
+}
+
+.yellowBg {
+	background-color: yellow;
+}
+
+.redBg {
+	background-color: red;
+}
+
+.pinkBg {
+	background-color: pink;
 }
