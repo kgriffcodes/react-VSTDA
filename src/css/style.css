@@ -127,3 +127,7 @@ div.pull-right a {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
+ul {
+	padding-left: 0;
+}

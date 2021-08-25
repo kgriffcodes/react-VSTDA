@@ -40,21 +40,23 @@ class ToDoList extends React.Component {
 		return (
 			<div className='sub-container to-do-list'>
 				<SubHeader className='pt-3 pl-3' text='To Do List' />
-				{todoItems.map(todo => {
-					return (
-						<ToDoItem
-							updateCompletedStatus={ this.updateCompletedStatus }
-							removeCallback={ this.removeCallback }
-							handleTodoData={ this.handleTodoData }
-							title={ todo.todoText }
-							priority={ todo.todoPriorityLevel }
-							isCompleted={ todo.todoIsCompleted }
-							key={ todo.todoId }
-							listId={ todo.todoId }
-							displayEdit={ todo.todoDisplayEdit }
-						/>
-					);
-				})}
+				<ul>
+					{todoItems.map(todo => {
+						return (
+							<ToDoItem
+								updateCompletedStatus={ this.updateCompletedStatus }
+								removeCallback={ this.removeCallback }
+								handleTodoData={ this.handleTodoData }
+								title={ todo.todoText }
+								priority={ todo.todoPriorityLevel }
+								isCompleted={ todo.todoIsCompleted }
+								key={ todo.todoId }
+								listId={ todo.todoId }
+								displayEdit={ todo.todoDisplayEdit }
+							/>
+						);
+					})}
+				</ul>	
 			</div>
 		);
 	}

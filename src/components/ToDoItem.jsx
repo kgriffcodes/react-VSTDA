@@ -63,11 +63,12 @@ class ToDoItem extends Component {
 			'pb-2',
 			'to-do-item',
 			'justify-content-between',
+			'success'
 		);
 		const bgClass = this.state.priority == 1 ? 'greenBg' : this.state.priority == 2 ? 'yellowBg' : this.state.priority == 3 ? 'redBg' : '';
 		const strikeText = this.state.isCompleted ? 'strikeText' : '';
 		return (
-			<div className={`${divClassNames} ${bgClass} pt-3`}>
+			<li className={`${divClassNames} ${bgClass} pt-3`}>
 				<span className='d-flex ml-4 container-checkbox'>
 					<input type='checkbox' onClick={ this.updateCompletedStatus } />
 					<span className='checkmark' />
@@ -87,7 +88,7 @@ class ToDoItem extends Component {
 						passAlongDataToList={ this.passAlongDataToList }
 					/>
 				</span>
-			</div>
+			</li>
 		);
 	}
 }
