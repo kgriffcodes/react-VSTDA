@@ -2,6 +2,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import EditToDo from './EditTodo';
 
 class ToDoItem extends Component {
@@ -11,14 +12,22 @@ class ToDoItem extends Component {
 			title: this.props.title,
 			priority: this.props.priority,
 			displayEdit: this.props.displayEdit,
-			listId: this.props.listId
+			listId: this.props.listId,
+			isCompleted: this.props.isCompleted
 		};
+		this.updateCompletedStatus = this.updateCompletedStatus.bind(this);
 		this.passAlongDataToList = this.passAlongDataToList.bind(this);
 		this.toggleEditTodo = this.toggleEditTodo.bind(this);
 		this.handleUpdateCallback = this.handleUpdateCallback.bind(this);
 		this.handleDeleteClick = this.handleDeleteClick.bind(this);
-		this.pickBgColor = this.pickBgColor.bind(this);
     }
+
+	updateCompletedStatus() {
+		const isCompletedCopy = this.state.isCompleted;
+		this.setState({
+			isCompleted: !isCompletedCopy
+		}, this.props.updateCompletedStatus(this.state));
+	}
 
 	passAlongDataToList(editedStateVals) {
 		this.toggleEditTodo();
@@ -48,24 +57,24 @@ class ToDoItem extends Component {
 		this.props.removeCallback(this.state);
 	}
 
-	pickBgColor() {
-		let bgColor = 'pinkBg';
-		if (this.state.priority === 1) {
-			bgColor = 'greenBg';
-		} else if (this.state.priority === 2) {
-			bgColor = 'yellowBg';
-		} else if (this.state.priority === 3) {
-			bgColor = 'redBg';
-		}
-		return bgColor;
-	}
-
 	render() {
+		const divClassNames = classNames(
+			'pt-2',
+			'pb-2',
+			'to-do-item',
+			'justify-content-between',
+		);
+		const bgClass = this.state.priority == 1 ? 'greenBg' : this.state.priority == 2 ? 'yellowBg' : this.state.priority == 3 ? 'redBg' : '';
+		const strikeText = this.state.isCompleted ? 'strikeText' : '';
 		return (
-			<div className={ 'pt-2 pb-2 to-do-item justify-content-between ' + this.pickBgColor() }>
-				<h6>{ this.state.title }</h6>
-				<span>
-					<a onClick={ this.toggleEditTodo } className='edit-todo'>
+			<div className={`${divClassNames} ${bgClass} pt-3`}>
+				<span className='d-flex ml-4 container-checkbox'>
+					<input type='checkbox' onClick={ this.updateCompletedStatus } />
+					<span className='checkmark' />
+					<p className={ `${strikeText} pl-3` }>{ this.state.title }</p>
+				</span>
+				<span className='pr-4'>
+					<a onClick={ this.toggleEditTodo } className='edit-todo pr-2'>
 						<i className='fas fa-edit' />
 					</a>
 					<a onClick={ this.handleDeleteClick } className='delete-todo'>

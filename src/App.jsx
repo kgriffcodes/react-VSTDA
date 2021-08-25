@@ -15,6 +15,7 @@ class App extends Component {
 		this.handleCallback = this.handleCallback.bind(this);
 		this.handleUpdateTodoArr = this.handleUpdateTodoArr.bind(this);
 		this.handleRemoveItemFromArr = this.handleRemoveItemFromArr.bind(this);
+		this.updateCompletedStatus = this.updateCompletedStatus.bind(this);
     }
 
 	handleAddTodo(inputAreaData) {
@@ -22,7 +23,8 @@ class App extends Component {
 			todoText: inputAreaData.todoText,
 			todoPriorityLevel: inputAreaData.todoPriorityLevel,
 			todoId: inputAreaData.todoText,
-			todoDisplayEdit: false
+			todoDisplayEdit: false,
+			todoIsCompleted: false
 		};
 
 		this.setState((prevState) => {
@@ -75,6 +77,11 @@ class App extends Component {
 		});
 	}
 
+	updateCompletedStatus(todoListData) {
+		const selectedTodoId = todoListData['listId'];
+		console.log('callback 4 func called', selectedTodoId, todoListData);
+	}
+
 
   render() {
     return (
@@ -89,6 +96,7 @@ class App extends Component {
           </div>
           <div className='col-7'>
             <ToDoList
+				updateCompletedStatus={ this.updateCompletedStatus }
 				removeCallback={ this.handleRemoveItemFromArr }
 				parentCallback={ this.handleUpdateTodoArr }
 				todoItems={ this.state.todoItems }

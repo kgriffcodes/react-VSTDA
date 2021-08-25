@@ -38,13 +38,15 @@ class InputArea extends Component {
 					onChange={ this.handleChange }
 					label='I want to...'
 					className='create-todo-text'
+					placeholder='Enter your to do here...'
 				/>
 				<PriorityArea
 					name='todoPriorityLevel'
 					onChange={ this.handleChange }
+					className='create-todo-priority'
 				/>
 				<Button
-					className='mx-auto'
+					className='create-todo mx-auto mt-4 btn btn-primary'
 					text='Add to List'
 					onClick={ this.handleClick }
 				/>

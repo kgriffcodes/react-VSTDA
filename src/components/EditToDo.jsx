@@ -33,16 +33,18 @@ class EditToDo extends React.Component {
 			<div className={ this.props.className }>
 				<TextArea
 					name='todoText'
-					className='update-todo-text' 
+					className='update-todo-text'
 					label='Description'
 					onChange={ this.handleChange }
+					placeholder={ this.state.todoText }
 				/>
 				<PriorityArea
 					name='todoPriorityLevel'
-					className='update-todo-priority'
+					className='update-todo-priority ml-3'
 					onChange={ this.handleChange }
 				/>
 				<Button
+					className='update-todo mt-4 btn btn-primary'
 					onClick={ this.combineEditandToggleFunc }
 					text='Save'
 				/>

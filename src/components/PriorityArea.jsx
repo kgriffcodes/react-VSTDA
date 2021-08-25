@@ -9,7 +9,7 @@ function PriorityArea(props) {
             <select
 				name={ props.name }
 				onChange={ props.onChange }
-				className='create-todo-priority'
+				className={ props.className }
 				id='priority-level'
 				defaultValue='DEFAULT'
             >
